@@ -86,7 +86,7 @@ const sampleDataArray = [
     amount: 100000,
     currency: 'USD',
     dueDate: new Date('2023-12-01'),
-    name: 'Sample Standing Order 1',
+    name: 'Sample Standing Order 2',
     paymentFrequency: 'monthly',
     firstPaymentDate: new Date('2023-01-01'),
   },
