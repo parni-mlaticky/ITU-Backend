@@ -6,6 +6,8 @@ const createStandingOrder = async (req, res) => {
     await standingOrder.save();
     res.status(201).send(standingOrder);
   } catch (error) {
+    console.log(error);
+    console.log(req.body);
     res.status(400).send(error);
   }
 };
@@ -24,7 +26,7 @@ const getStandingOrderById = async (req, res) => {
 
 const getAllStandingOrders = async (req, res) => {
   try {
-    const standingOrders = await StandingOrder.find({});
+    const standingOrders = await StandingOrder.find({}, 'name');
     res.json(standingOrders);
   } catch (error) {
     res.status(500).send({ message: 'Error fetching standing orders', error });
