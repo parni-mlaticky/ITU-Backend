@@ -12,6 +12,21 @@ const createStandingOrder = async (req, res) => {
   }
 };
 
+const updateStandingOrder = async (req, res) => {
+    try {
+        const standingOrder = await StandingOrder.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+        );
+        if (!standingOrder) {
+            return res.status(404).send({ message: 'Standing order not found' });
+        }
+        res.send(standingOrder);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 const getStandingOrderById = async (req, res) => {
   try {
     const standingOrder = await StandingOrder.findById(req.params.id);
@@ -24,6 +39,20 @@ const getStandingOrderById = async (req, res) => {
   }
 };
 
+const deleteStandingOrder = async (req, res) => {
+    try {
+        const standingOrder = await StandingOrder.findByIdAndDelete(req.params.id);
+        if (!standingOrder) {
+            return res.status(404).send({ message: 'Standing order not found' });
+        }
+        res.send(standingOrder);
+    } catch (error) {
+        console.log("Error deleting ", error);
+        res.status(500).send(error);
+    }
+};
+
+
 const getAllStandingOrders = async (req, res) => {
   try {
     const standingOrders = await StandingOrder.find({}, 'name');
@@ -35,6 +64,8 @@ const getAllStandingOrders = async (req, res) => {
 
 module.exports = {
   createStandingOrder,
+  updateStandingOrder,
   getStandingOrderById,
+  deleteStandingOrder,
   getAllStandingOrders,
 };

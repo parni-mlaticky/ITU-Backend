@@ -32,7 +32,7 @@ const standingOrderSchema = new mongoose.Schema(
     },
     dueDate: {
       type: Date,
-      required: true,
+      required: false,
     },
     variableSymbol: String,
     messageForRecipient: String,
@@ -86,11 +86,16 @@ const sampleDataArray = [
     amount: 100000,
     currency: 'USD',
     dueDate: new Date('2023-12-01'),
-    name: 'Sample Standing Order 1',
+    name: 'Sample Standing Order 2',
     paymentFrequency: 'monthly',
     firstPaymentDate: new Date('2023-01-01'),
   },
 ];
+
+StandingOrder.deleteMany({}, (err) => {
+    if (err) return console.error(err);
+    console.log('deleted');
+});
 
 StandingOrder.insertMany(sampleDataArray, (err, docs) => {
   if (err) return console.error(err);
