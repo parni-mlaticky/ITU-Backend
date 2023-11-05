@@ -45,7 +45,7 @@ const standingOrderSchema = new mongoose.Schema(
     },
     paymentFrequency: {
       type: String,
-      enum: ['daily', 'weekly', 'monthly', 'yearly'],
+      enum: ['daily', 'weekly', 'biweekly', 'monthly', 'yearly'],
       required: true,
     },
     firstPaymentDate: {
